@@ -28,13 +28,13 @@ public class CreateItemC2SPacket implements EmiPacket {
 
 	@Override
 	public void apply(PlayerEntity player) {
-		if ((player.hasPermissionLevel(2) || player.isCreative()) && player.currentScreenHandler != null) {
+		if ( player.currentScreenHandler != null) {
 			if (stack.isEmpty()) {
 				if (mode == 1 && !player.currentScreenHandler.getCursorStack().isEmpty()) {
 					EmiLog.info(player.getName() + " deleted " + player.currentScreenHandler.getCursorStack());
 					player.currentScreenHandler.setCursorStack(stack);
 				}
-			} else {
+			} else if(stack.contains("yuushya")){
 				EmiLog.info(player.getName() + " 作弊获取" + stack);
 				if (mode == 0) {
 					player.getInventory().offerOrDrop(stack);
