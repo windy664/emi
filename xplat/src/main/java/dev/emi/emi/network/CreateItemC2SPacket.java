@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.util.Identifier;
+import net.minecraft.screen.ScreenHandler;
 
 public class CreateItemC2SPacket implements EmiPacket {
 	private final int mode;
