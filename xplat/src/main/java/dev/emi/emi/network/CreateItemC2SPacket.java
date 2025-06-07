@@ -29,19 +29,18 @@ public class CreateItemC2SPacket implements EmiPacket {
 
 	@Override
 	public void apply(PlayerEntity player) {
-		ScreenHandler handler = player.currentScreenHandler;
-		if (handler != null) {
+		if ( player.currentScreenHandler != null) {
 			if (stack.isEmpty()) {
-				if (mode == 1 && !handler.getCursorStack().isEmpty()) {
-					EmiLog.info(player.getName().getString() + " 删除了物品 " + handler.getCursorStack());
-					handler.setCursorStack(ItemStack.EMPTY);
+				if (mode == 1 && !player.currentScreenHandler.getCursorStack().isEmpty()) {
+					EmiLog.info(player.getName() + " deleted " + player.currentScreenHandler.getCursorStack());
+					player.currentScreenHandler.setCursorStack(stack);
 				}
-			} else if (stack.getTranslationKey().contains("yuushya")) { // 检查名称中是否包含 "yuushya"
-				EmiLog.info(player.getName().getString() + " 作弊获取 " + stack);
+			} else if (stack.getTranslationKey().contains("yuushya")) { 
+				EmiLog.info(player.getName() + " cheated in " + stack);
 				if (mode == 0) {
-					player.getInventory().offerOrDrop(stack.copy());
+					player.getInventory().offerOrDrop(stack);
 				} else if (mode == 1) {
-					handler.setCursorStack(stack.copy());
+					player.currentScreenHandler.setCursorStack(stack);
 				}
 			}
 		}
