@@ -35,7 +35,7 @@ public class CreateItemC2SPacket implements EmiPacket {
 					player.currentScreenHandler.setCursorStack(stack);
 				}
 			} else {
-				EmiLog.info(player.getName() + " cheated in " + stack);
+				EmiLog.info(player.getName() + " 作弊获取" + stack);
 				if (mode == 0) {
 					player.getInventory().offerOrDrop(stack);
 				} else if (mode == 1) {
