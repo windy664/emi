@@ -9,10 +9,11 @@ import java.util.stream.Stream;
 
 import dev.emi.emi.mixin.accessor.BrewingRecipeRegistryAccessor;
 import net.minecraft.component.ComponentChanges;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Items;
 import net.minecraft.item.PotionItem;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.neoforged.neoforge.client.ClientHooks;
-import net.neoforged.neoforge.common.CommonHooks;
 import org.apache.commons.lang3.text.WordUtils;
 import org.objectweb.asm.Type;
 
@@ -45,7 +46,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.BrewingRecipeRegistry;
@@ -320,5 +320,12 @@ public class EmiAgnosNeoForge extends EmiAgnos {
 	@Override
 	protected BakedModel getBakedTagModelAgnos(Identifier id) {
 		return MinecraftClient.getInstance().getBakedModelManager().getModel(new ModelIdentifier(id, ModelIdentifier.STANDALONE_VARIANT));
+	}
+
+	@Override
+	protected boolean isEnchantableAgnos(ItemStack stack, Enchantment enchantment) {
+		ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
+		enchantedBook.addEnchantment(RegistryEntry.of(enchantment), enchantment.getMaxLevel());
+		return stack.isBookEnchantable(enchantedBook);
 	}
 }
