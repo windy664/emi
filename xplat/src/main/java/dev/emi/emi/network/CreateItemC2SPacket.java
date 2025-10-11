@@ -35,7 +35,7 @@ public class CreateItemC2SPacket implements EmiPacket {
 					EmiLog.info(player.getName() + " deleted " + player.currentScreenHandler.getCursorStack());
 					player.currentScreenHandler.setCursorStack(stack);
 				}
-			} else if (stack.getTranslationKey().contains("yuushya")) { 
+			} else if (stack.getTranslationKey().contains("yuushya") || stack.getTranslationKey().contains("ultramarine") ) { 
 				EmiLog.info(player.getName() + " cheated in " + stack);
 				if (mode == 0) {
 					player.getInventory().offerOrDrop(stack);
